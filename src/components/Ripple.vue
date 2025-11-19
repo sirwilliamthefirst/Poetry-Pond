@@ -33,5 +33,6 @@ const emit = defineEmits(['deleteRipple'])
   border-radius: 50%;
   animation: ripple-ring 2s ease-out forwards;
   pointer-events: none;
+  user-select: none;
 }
 </style>

@@ -1,4 +1,4 @@
-<script lang="js"></script>
+<script setup lang="ts"></script>
 
 <template>
   <header>
