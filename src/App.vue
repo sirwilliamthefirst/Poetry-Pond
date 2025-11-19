@@ -21,6 +21,7 @@ import Header from './components/Header.vue'
   z-index: 1;
   margin: auto;
   float: right;
+  height: min-content;
 }
 .pond_container {
   position: fixed;
