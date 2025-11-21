@@ -4,7 +4,7 @@ import Header from './components/Header.vue'
 </script>
 
 <template>
-  <div class="desktop-header"><Header></Header></div>
+  <Header></Header>
 
   <div class="pond_container">
     <Pond></Pond>
