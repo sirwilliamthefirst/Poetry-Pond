@@ -105,7 +105,7 @@ function filterRipple(id: number) {
   font-family: 'cloudy_font';
   pointer-events: none;
   opacity: 1;
-  font-size: 0.5rem;
+  font-size: 1rem;
   animation: wavy 4s ease-in-out infinite;
 }
 </style>

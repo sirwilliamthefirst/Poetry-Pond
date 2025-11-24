@@ -142,7 +142,7 @@ animatePaper()
     <span class="poetrytext">{{ poemCollection[props.id]?.title }}</span>
   </div>
   <div v-if="open" class="modal-bg" @click.stop="open = false">
-    <Poem :id="props.id" @click.stop></Poem>
+    <Poem :id="props.id" ></Poem>
   </div>
 </template>
 
@@ -171,6 +171,7 @@ animatePaper()
   width: 100%;
   height: 100%;
 }
+
 .poetrytext {
   bottom: 150%;
   visibility: hidden;
@@ -183,6 +184,7 @@ animatePaper()
   pointer-events: none;
   margin: auto;
 }
+
 .page-container:hover .poetrytext {
   visibility: visible;
   animation: fade-in-text 1s forwards;
