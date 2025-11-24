@@ -3,6 +3,7 @@ export const poemCollection = [
     id: 0,
     title: 'Immaterial',
     author: 'William Braxton',
+    styles: {},
     html: `
     <div class="stanza">
       <p>When a platform is acquired—</p>
@@ -43,6 +44,7 @@ export const poemCollection = [
     <div class="stanza">
       <p>How are Joy and Sorrow different?</p>
     </div>
+
   `,
   },
   {
@@ -98,7 +100,8 @@ export const poemCollection = [
     id: 3,
     title: 'Gleam',
     author: 'Garret Bischof',
-    html: ` <div class="stanza">
+    html: ` <div style="text-align: justify; margin: 0 0 0 10%">
+  <div class="stanza">
   <p>The girl was in the room. Like other times the girl was in the room she</p>
   <p>scarcely noticed it. She saw a metallic box. It was the oven. She heard some</p>
   <p>sounds. It was the piano. She smelled something familiar. It was dinner.</p>
@@ -110,6 +113,8 @@ export const poemCollection = [
   <p>shines in her mind. The smell of dinner radiates nostalgia through her body.</p>
   <p>Today, for an unknown reason, the girl notices the room and the room is</p>
   <p>gleaming.</p>
+  </div>
+  </div>
 
     `,
   },
