@@ -13,10 +13,7 @@ const toggleMenu = () => {
   <div v-if="isMenuOpen" class="backdrop" @click.stop()="isMenuOpen = false"></div>
 
   <div id="mySidenav" class="sidenav" :class="{ open: isMenuOpen }">
-    <a href="#">About</a>
-    <a href="#">Services</a>
-    <a href="#">Clients</a>
-    <a href="#">Contact</a>
+    <a href="https://forms.gle/AREQP5MJMg3sevg89">Submit</a>
   </div>
 
   <svg
@@ -70,7 +67,6 @@ const toggleMenu = () => {
   left: 100%;
   transform: translate(-100%, 0%);
   overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 }
 
@@ -81,9 +77,9 @@ const toggleMenu = () => {
 
 /* The navigation menu links */
 .sidenav a {
-  padding: 8px 8px 8px 32px;
+  padding: 8px 8px 8px 8px;
   text-decoration: none;
-  font-size: 25px;
+  font-size: clamp(1.5rem, 3vw, 3rem);
   color: #818181;
   display: block;
   transition: 0.3s;
