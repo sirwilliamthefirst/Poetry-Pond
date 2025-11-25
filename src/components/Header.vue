@@ -80,13 +80,14 @@ const toggleMenu = () => {
 }
 
 .github-link {
-  width: 10px;
-  height: 10px;
+  width: 0.5em;
+  height: 0.5em;
 }
 
 .github-link img {
-  width: 10px;
-  height: 10px;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .sidenav.open {
