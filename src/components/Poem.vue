@@ -21,7 +21,7 @@ const poem = computed(() => ({
 
 <template>
   <Teleport defer to="#modals">
-    <div class="poemPage">
+    <div class="poemPage fade-in">
       <h1>{{ poem.title }}</h1>
       <h2>{{ poem.author }}</h2>
       <span v-html="poem.html"></span>
@@ -57,5 +57,19 @@ const poem = computed(() => ({
   width: 100%;
   font-size: 0.9rem;
   font-weight: bold;
+}
+.poemPage.fade-in {
+  animation: fadeInPoem 0.6s ease;
+}
+
+@keyframes fadeInPoem {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 </style>

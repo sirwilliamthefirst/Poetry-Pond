@@ -14,6 +14,13 @@ const toggleMenu = () => {
 
   <div id="mySidenav" class="sidenav" :class="{ open: isMenuOpen }">
     <a href="https://forms.gle/AREQP5MJMg3sevg89">Submit</a>
+    <a
+      class="github-link"
+      href="https://github.com/sirwilliamthefirst/Poetry-Pond"
+      style="display: inline-block; line-height: 0"
+    >
+      <img src="../assets/github-mark.png" alt="github repo" />
+    </a>
   </div>
 
   <svg
@@ -61,6 +68,7 @@ const toggleMenu = () => {
   width: 0;
   background: #e8efb2;
   border-left: 1px groove #00d4ff;
+  text-align: center;
   position: fixed; /* Stay in place */
   z-index: 2; /* Stay on top */
   top: 0; /* Stay at the top */
@@ -68,6 +76,17 @@ const toggleMenu = () => {
   transform: translate(-100%, 0%);
   overflow-x: hidden; /* Disable horizontal scroll */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+.github-link {
+  width: 0.5em;
+  height: 0.5em;
+}
+
+.github-link img {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .sidenav.open {
@@ -87,7 +106,7 @@ const toggleMenu = () => {
 
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
-  color: #f1f1f1;
+  color: #ff8c42;
 }
 
 /* Position and style the close button (top right corner) */
