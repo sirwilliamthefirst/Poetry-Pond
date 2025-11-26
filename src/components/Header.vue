@@ -13,7 +13,6 @@ const toggleMenu = () => {
   <div v-if="isMenuOpen" class="backdrop" @click.stop()="isMenuOpen = false"></div>
 
   <div id="mySidenav" class="sidenav" :class="{ open: isMenuOpen }">
-    <a href="https://forms.gle/AREQP5MJMg3sevg89">ddsad</a>
     <a href="https://forms.gle/AREQP5MJMg3sevg89">Submit</a>
     <a
       class="github-link"
