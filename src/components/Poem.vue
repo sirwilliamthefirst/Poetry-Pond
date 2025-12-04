@@ -24,20 +24,20 @@ const poem = computed(() => ({
     <div class="poemPage fade-in">
       <h1>{{ poem.title }}</h1>
       <h2>{{ poem.author }}</h2>
-      <span v-html="poem.html"></span>
+      <div v-html="poem.html"></div>
     </div>
   </Teleport>
 </template>
 
 <style>
 .stanza {
-  padding: 0.5% 0.5%;
+  padding: 1% 1%;
 }
 .poemPage {
   background-color: #faf4ed;
   position: fixed;
   z-index: 3;
-  width: 100%;
+  width: max-content;
   border: 1cap;
   padding: 3% 10% 3% 10%;
 }
@@ -45,18 +45,27 @@ const poem = computed(() => ({
   text-align: center;
   width: 100%;
   font-size: 1.2rem;
+  margin: auto;
+  white-space: nowrap;
 }
 .poemPage > h1 {
   text-align: center;
   width: 100%;
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 5vw, 2rem);
+
 }
 .poemPage > h2 {
   margin: auto;
   text-align: center;
   width: 100%;
-  font-size: 0.9rem;
+  font-size: clamp(0.75rem, 2.5vw, 0.9rem);
   font-weight: bold;
+}
+
+.poemPage p {
+  width: 100%;
+  margin: 5px;
+  font-size: clamp(16px, 2.5vw, 2rem);
 }
 .poemPage.fade-in {
   animation: fadeInPoem 0.6s ease;
