@@ -100,7 +100,7 @@ export const poemCollection = [
     id: 3,
     title: 'Gleam',
     author: 'Garret Bischof',
-    html: ` <div style="text-align: justify; margin: 0 0 0 10%">
+    html: ` <div style="text-align: left; ">
   <div class="stanza">
   <p>The girl was in the room. Like other times the girl was in the room she</p>
   <p>scarcely noticed it. She saw a metallic box. It was the oven. She heard some</p>
@@ -118,4 +118,33 @@ export const poemCollection = [
 
     `,
   },
+    {
+    id: 4,
+    title: 'My Tragedy',
+    author: 's. f.',
+    html: ` 
+  <div class="stanza">
+  <p>The sun cycles to visit once a day</p>
+  <p>As I sit there pondering about my next lay</p>
+  <p>I yearn for the feeling of someone's skin against my lips</p>
+  <p>But there's this recurring memory of my monster's bruising grips</p>
+  <p>I toss and turn in bed hoping to get some sleep for once—</p>
+  <p>Only to be awakened by the nightmare of this foolish dunce</p>
+  <p>He appears out of nowhere without a care in the world for what he's done,</p>
+  <p>And so I scavenge through my closet to try to find my gun</p>
+  <p>I point it hesitantly against his manipulative beating heart,</p>
+  <p>And tears run quickly down my face as my heart falls apart</p>
+  <p>His evil grin widens for he knows I won't do much</p>
+  <p>Because he knows he has me around his finger - he knows he's my crutch</p>
+  <p>And so instead of pulling the trigger, I point it to my heart instead</p>
+  <p>And soon enough, I would be bleeding right there on my deathbed</p>
+  <p>The next scene is eerily quiet and saddening indeed,</p>
+  <p>But he got what he wanted—to happily watch me bleed</p>
+  <p>The moon now shines as it looks over the mess I've now made</p>
+  <p>Yet he still stands over me unbothered, undismayed</p>
+  </div>
+
+    `,
+  },
+  
 ]
