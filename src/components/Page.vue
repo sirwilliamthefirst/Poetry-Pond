@@ -11,22 +11,31 @@ const xPos = ref(0)
 const yPos = ref(0)
 const rotatation = ref(0)
 const open = ref(false)
-const poemRef = ref(null)
+const pageColor = ref('#ffffff')
+const isRead = ref(false)
 const isPickedUp = ref(false)
 
 let dy = 0
 let dx = 0
 let dr = 0
 let parent = myElement.value?.parentElement
+let poemDate = null
 
 onMounted(() => {
   dy = 1 * (Math.random() - 0.5)
   dx = 1 * (Math.random() - 0.5)
   parent = myElement.value?.parentElement
+  poemDate = poemCollection[props.id]?.date
   if (parent) {
     const rect = myElement.value!.getBoundingClientRect()
     xPos.value = Math.random() * (parent.clientWidth - rect.width)
     yPos.value = Math.random() * (parent.clientHeight - rect.height)
+  }
+  if (poemDate) {
+    //check if the difference is larger than 30 days
+    let poemDateDiff = Date.now() - new Date(poemDate).getTime()
+
+    pageColor.value = poemDateDiff > 2592000000 ? '#ffffff' : '#e2ffdc'
   }
 })
 
@@ -101,6 +110,7 @@ animatePaper()
         position: 'absolute',
         top: `${yPos}px`,
         left: `${xPos}px`,
+        opacity: isRead ? '40%' : '100%',
       }"
     >
       <svg
@@ -116,13 +126,12 @@ animatePaper()
         }"
         @click.stop="isPickedUp = true"
         preserveAspectRatio="xMidYMid meet"
-        fill="#000000"
       >
         <!-- SVG content stays the same -->
         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
         <g id="SVGRepo_iconCarrier">
-          <path fill="#ffffff" d="M87.85 6.19H16.8v115.45h94.62V28.8z"></path>
+          <path :fill="pageColor" d="M87.85 6.19H16.8v115.45h94.62V28.8z"></path>
           <g
             fill="none"
             stroke="#b0bec5"
@@ -146,7 +155,11 @@ animatePaper()
     </div>
   </Transition>
 
-  <div v-if="open" class="modal-bg" @click.stop="((open = false), (isPickedUp = false))">
+  <div
+    v-if="open"
+    class="modal-bg"
+    @click.stop="((open = false), (isPickedUp = false), (isRead = true))"
+  >
     <div class="poem-fade">
       <Poem :id="props.id"></Poem>
     </div>
@@ -177,6 +190,7 @@ animatePaper()
 .page {
   width: 100%;
   height: 100%;
+  color: blue;
 }
 
 .poetrytext {
@@ -204,6 +218,7 @@ animatePaper()
 }
 .pickup-leave-active {
   animation: pagePickUp 0.5s ease;
+  opacity: 60%;
 }
 
 .poem-fade {
@@ -212,7 +227,6 @@ animatePaper()
 
 @keyframes pagePickUp {
   0% {
-    opacity: 1;
     transform: scale(1);
   }
   100% {

@@ -1,0 +1,7 @@
+Features to Add 
+
+- Opacity to read poems 
+- New poems within 30 days
+- Search feature
+- Favorites, thats toggleable 
+- 
