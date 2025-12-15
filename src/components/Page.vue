@@ -12,6 +12,7 @@ const yPos = ref(0)
 const rotatation = ref(0)
 const open = ref(false)
 const pageColor = ref('#ffffff')
+const isRead = ref(false)
 const isPickedUp = ref(false)
 
 let dy = 0
@@ -109,6 +110,7 @@ animatePaper()
         position: 'absolute',
         top: `${yPos}px`,
         left: `${xPos}px`,
+        opacity: isRead ? '40%' : '100%',
       }"
     >
       <svg
@@ -153,7 +155,11 @@ animatePaper()
     </div>
   </Transition>
 
-  <div v-if="open" class="modal-bg" @click.stop="((open = false), (isPickedUp = false))">
+  <div
+    v-if="open"
+    class="modal-bg"
+    @click.stop="((open = false), (isPickedUp = false), (isRead = true))"
+  >
     <div class="poem-fade">
       <Poem :id="props.id"></Poem>
     </div>
@@ -185,7 +191,6 @@ animatePaper()
   width: 100%;
   height: 100%;
   color: blue;
-  opacity: 60%;
 }
 
 .poetrytext {
@@ -213,6 +218,7 @@ animatePaper()
 }
 .pickup-leave-active {
   animation: pagePickUp 0.5s ease;
+  opacity: 60%;
 }
 
 .poem-fade {
@@ -221,7 +227,6 @@ animatePaper()
 
 @keyframes pagePickUp {
   0% {
-    opacity: 1;
     transform: scale(1);
   }
   100% {
