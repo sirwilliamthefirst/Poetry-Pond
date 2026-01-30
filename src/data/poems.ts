@@ -151,4 +151,23 @@ export const poemCollection = [
 
     `,
   },
+  {
+    id: 5,
+    title: 'rot',
+    author: 'anon',
+    date: '2026-1-29T00:00:00',
+    html: ` 
+  <div style="text-align: left;> 
+  <div class="stanza">
+  <p>It has been 16 days no one has found me</p>
+  <p>Whatever left inside me is all over the bed, and my hair is stuck to the pillow.</p>
+  <p>I left a song on loop so there could be beauty in my death, but the radio has died and the room stinks.</p>
+  <p>I thought what I believed could be proven wrong</p>
+  <p>I thought i would regret it if I saw some sense of urgency for me</p>
+  <p>But no one is here.</p>
+  <p>Thank god!</p>
+  </div>
+  </div>
+    `,
+  },
 ]
