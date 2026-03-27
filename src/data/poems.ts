@@ -148,14 +148,13 @@ export const poemCollection = [
   <p>The moon now shines as it looks over the mess I've now made</p>
   <p>Yet he still stands over me unbothered, undismayed</p>
   </div>
-
     `,
   },
   {
     id: 5,
     title: 'rot',
     author: 'anon',
-    date: '2026-1-29T00:00:00',
+    date: '2026-01-29T00:00:00',
     html: ` 
   <div style="text-align: left;> 
   <div class="stanza">
@@ -170,4 +169,51 @@ export const poemCollection = [
   </div>
     `,
   },
+  {
+    id: 6,
+    title: 'dot',
+    author: 'At',
+    date: '2026-03-27T00:00:00',
+    html: ` 
+  <div style="text-align: left;"> 
+  <div class="stanza">
+  <p>点がある</p>
+  <p>点が連なり線になる</p>
+  <p>線が重なり面になる</p>
+  </div>
+  <div class="stanza">
+  <p>点がうごめき</p>
+  <p>線がさざめき</p>
+  <p>面が波打つことがある</p>
+  </div>
+  <div class="stanza">
+  <p>どこかの点の小さな鼓動が</p>
+  <p>どこまでも広がって</p>
+  <p>遠くの遠くから</p>
+  <p>聞こえてくることがある</p>
+  </div>
+  <div class="stanza">
+  <p>すべての点に意思があり</p>
+  <p>その意思に熱と光がある</p>
+  <p>熱や光には色があり</p>
+  <p>色をなくした点はそのうち</p>
+  <p>静かに息を引き取る</p>
+  </div>
+  <div class="stanza">
+  <p>二つの点をむすぶまっすぐな線</p>
+  <p>その線の上にもたくさんの点</p>
+  <p>線からずれた点もある</p>
+  <p>ずれた点もまた違った線の一部</p>
+  </div>
+  <div class="stanza">
+  <p>いつか</p>
+  <p>面がほどけて線になり</p>
+  <p>線がとぎれて点になる</p>
+  </div>
+  <div class="stanza">
+  <p>・・・</p>
+  </div>
+  </div>
+    `,
+  }
 ]
