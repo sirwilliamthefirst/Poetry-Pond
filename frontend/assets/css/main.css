@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 body {
-    background-color: #bbceff;
-    margin: 0px !important;
+  margin: 0;
+  height: 100vh;
+}
+.container {
+  height: 100%;
+  border: 1px solid cyan;
+  box-sizing: border-box;
 }

@@ -9,6 +9,7 @@ services:
     working_dir: /frontend
     volumes:
       - ./frontend/:/frontend:delegated # improve speed for hot reloading
+      - /frontend/node_modules
     command: ["npm", "run", "dev"]
     depends_on:
       - backend
@@ -26,6 +27,8 @@ services:
     depends_on:
       - pgsql_db
     restart: always
+    environment:
+      DATABASE_URL: ${DB_CONNECTION}
 
   pgsql_db:
     container_name: pgsql_db
@@ -35,7 +38,8 @@ services:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
-      - ./DB_DATA:/var/lib/postgresql/data
+      - ./pgsql:/var/lib/postgresql
+      - ./database/init:/docker-entrypoint-initdb.d  # add this
     ports:
       - ${POSTGRES_PORT}:5432
     restart: always

@@ -1,9 +1,13 @@
 from pydantic import BaseModel
+from uuid import UUID
+from datetime import datetime
+from typing import Optional
 
 class UserSchema(BaseModel):
-    id: int
-    name: str
+    id: UUID
     email: str
+    created_at: datetime
+    updated_at: datetime
 
     class Config:
-        from_attributes = True  # Allows SQLAlchemy model conversion
+        from_attributes = True
