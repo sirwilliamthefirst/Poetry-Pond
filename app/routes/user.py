@@ -1,11 +1,11 @@
-from fastapi import APIRouter, Depends, HTTPException  # import from fastapi, not http.client
-
+from fastapi import APIRouter, Depends, HTTPException, status # import from fastapi, not http.client
+from app.auth.security import hash_password, verify_password
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from database.models.user import User
-from database.schemas.user import UserSchema
+from database.schemas.user import TokenResponse, UserLogin, UserSchema, UserCreate
 from database import get_db
-
+from app.auth.jwt import create_access_token, create_refresh_token
 router = APIRouter(prefix="/user", tags=["users"])
 
 
@@ -18,13 +18,27 @@ async def get_users(email: str = None, db: AsyncSession = Depends(get_db)):
     users = result.scalars().all()
     return users
 
+@router.post("/register", response_model=UserSchema)
+async def register(user_in: UserCreate, db: AsyncSession = Depends(get_db)):
+    hashed = hash_password(user_in.password)
+    user = user = User(email=user_in.email, username=user_in.username, password_hash=hashed)
+    db.add(user)
+    await db.commit()
+    await db.refresh(user)
+    return user
 
-#@router.post("/login")
-#async def login(credentials: LoginSchema, db: AsyncSession = Depends(get_db)):
- #   query = select(User).where(User.email == credentials.email)
-  #  result = await db.execute(query)
-   # user = result.scalar_one_or_none()
-    #if not user:
-     #   raise HTTPException(status_code=404, detail="User not found")
-    # verify password here
-    #return user
+@router.post("/login", response_model=TokenResponse)
+async def login(credentials: UserLogin, db: AsyncSession = Depends(get_db)):
+    result = await db.execute(select(User).where(User.email == credentials.email))
+    user = result.scalar_one_or_none()
+
+    if not user or not verify_password(credentials.password, user.password_hash):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect email or password",
+        )
+
+    access_token = create_access_token({"sub": str(user.id)})
+    refresh_token = create_refresh_token({"sub": str(user.id)})
+
+    return TokenResponse(access_token=access_token, refresh_token=refresh_token)

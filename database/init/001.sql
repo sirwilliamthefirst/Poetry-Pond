@@ -1,6 +1,6 @@
-CREATE DATABASE poetryponddb;
+CREATE DATABASE mydb;
 
-\c poetryponddb
+\c mydb
 
 CREATE TABLE IF NOT EXISTS  users (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS poems (
   user_id UUID NOT NULL REFERENCES users(id),
   title TEXT NOT NULL,
   author TEXT NOT NULL,
-  html TEXT NOT NULL,
+  content TEXT NOT NULL,
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );

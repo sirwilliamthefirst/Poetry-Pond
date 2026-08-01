@@ -1,4 +1,5 @@
 import logging
+import os
 from fastapi import FastAPI
 
 from app import routes
@@ -10,9 +11,14 @@ from middlewares.logger import LoggingMiddleware
 logger = logging.getLogger("backend_logger")
 logger.setLevel(logging.DEBUG)
 
+is_prod = os.environ.get("ENV_TYPE") == "production"
+
 app = FastAPI(
     title="Backend Server", 
     description="This is the backend server for the application", 
+    docs_url=None if is_prod else "/docs",
+    redoc_url=None if is_prod else "/redoc",
+    openapi_url=None if is_prod else "/openapi.json",
     version='0.0.1',
     contact= {
         "name": "Admin",
