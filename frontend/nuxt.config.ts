@@ -15,13 +15,13 @@ debug: true,
  css: ['~/assets/css/main.css'],
 
  runtimeConfig: {
-					// Keys within public are also exposed client-side
-					public: {
-									proxyUrl: process.env.BACKEND_API_BASE,
-					}
-	},
+                    // Keys within public are also exposed client-side
+                    public: {
+                                    proxyUrl: process.env.BACKEND_API_BASE,
+                    }
+    },
 
- modules: ['@nuxt/eslint'],
+ modules: ['@nuxt/eslint', '@pinia/nuxt'],
 
  vite: {
    server: {
