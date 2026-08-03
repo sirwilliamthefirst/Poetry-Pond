@@ -1,10 +1,14 @@
 import uuid
+from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from database.models.poem import Poem
 from database.schemas.poem import PoemSchema, CreatePoemSchema
 from database import get_db
+
+security = HTTPBearer()
 
 router = APIRouter(prefix="/poems", tags=["poems"])
 @router.get("/", response_model=list[PoemSchema])
@@ -27,7 +31,7 @@ async def get_poem(poem_id: uuid.UUID, db: AsyncSession = Depends(get_db)):
     return poem
 
 @router.post("/", response_model=PoemSchema, status_code=201)
-async def add_poem(poemData: CreatePoemSchema, db: AsyncSession = Depends(get_db)):
+async def add_poem(credentials: Annotated[HTTPAuthorizationCredentials, Depends(security)], poemData: CreatePoemSchema, db: AsyncSession = Depends(get_db), ):
     poem = Poem(**poemData.model_dump())
     db.add(poem)
     await db.commit()
