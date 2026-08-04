@@ -5,6 +5,7 @@ import PoemSubmit from './PoemSubmit.vue'
 const isMenuOpen = ref(false)
 const menuWidth = ref(0)
 const isPoemEditorOpen = ref(false)
+const isLoginModalOpen = ref(false)
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
   menuWidth.value = isMenuOpen.value ? 10 : 0
@@ -16,17 +17,18 @@ const toggleMenu = () => {
 </script>
 
 <template>
-  <div v-if="isMenuOpen" class="backdrop" @click.stop="isMenuOpen = false; isPoemEditorOpen = false"></div>
+  <div v-if="isMenuOpen" class="backdrop" @click.stop="isMenuOpen = false; isPoemEditorOpen = false;"></div>
 
   <div id="mySidenav" class="sidenav" :class="{ open: isMenuOpen }">
+    <a class="text-btn" @click="isLoginModalOpen = true; isMenuOpen = false; isPoemEditorOpen = false">Login</a>
     <a class="github-link" href="https://github.com/sirwilliamthefirst/Poetry-Pond"
       style="display: inline-block; line-height: 0">
       <img src="../assets/github-mark.png" alt="github repo" />
     </a>
   </div>
 
-  <svg v-if="!isMenuOpen" @click="toggleMenu" class="hamburger-icon" viewBox="0 0 24 24" fill="none"
-    xmlns="http://www.w3.org/2000/svg">
+  <svg v-if="!isMenuOpen" @click="toggleMenu(); isLoginModalOpen = false" class="hamburger-icon" viewBox="0 0 24 24"
+    fill="none" xmlns="http://www.w3.org/2000/svg">
     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
     <g id="SVGRepo_iconCarrier">
@@ -36,6 +38,11 @@ const toggleMenu = () => {
     </g>
   </svg>
 
+  <div v-if="isLoginModalOpen" @click.stop="isLoginModalOpen = false">
+    <div class="poem-fade">
+      <Login></Login>
+    </div>
+  </div>
 
 </template>
 

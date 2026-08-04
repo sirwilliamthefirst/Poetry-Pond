@@ -4,7 +4,6 @@ import { useAuthStore } from '~/stores/auth'
 
 const authStore = useAuthStore()
 
-const isOpen = ref(false)
 const email = ref('')
 const password = ref('')
 const errorMessage = ref('')
@@ -31,32 +30,37 @@ async function handleSubmit() {
     }
 }
 </script>
+
+
 <template>
-    <div>
-        <span class="login-trigger" @click="isOpen = true">Log in</span>
+    <Teleport defer to="#modals">
 
-        <div v-if="isOpen" class="overlay" @click.self="closeModal">
-            <form class="modal" @submit.prevent="handleSubmit">
-                <h2>Log In</h2>
+        <div>
+            <div class="overlay">
+                <form class="poemPage fade-in" @submit.prevent="handleSubmit">
+                    <h2>Log In</h2>
 
-                <label for="email">Email</label>
-                <input id="email" v-model="email" type="email" autocomplete="email" required />
+                    <label for="email">Email</label>
+                    <input id="email" v-model="email" type="email" autocomplete="email" required />
 
-                <label for="password">Password</label>
-                <input id="password" v-model="password" type="password" autocomplete="current-password" required />
+                    <label for="password">Password</label>
+                    <input id="password" v-model="password" type="password" autocomplete="current-password" required />
 
-                <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
+                    <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
 
-                <div class="actions">
-                    <button type="button" @click="closeModal">Cancel</button>
-                    <button type="submit" :disabled="isSubmitting">
-                        {{ isSubmitting ? 'Logging in...' : 'Log In' }}
-                    </button>
-                </div>
-            </form>
+                    <div class="actions">
+                        <button type="button" @click="closeModal">Cancel</button>
+                        <button type="submit" :disabled="isSubmitting">
+                            {{ isSubmitting ? 'Logging in...' : 'Log In' }}
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
+    </Teleport>
+
 </template>
+
 
 
 <style scoped>
