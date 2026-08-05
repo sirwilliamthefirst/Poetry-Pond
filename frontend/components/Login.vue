@@ -41,10 +41,11 @@ async function handleSubmit() {
                     <h2>Log In</h2>
 
                     <label for="email">Email</label>
-                    <input id="email" v-model="email" type="email" autocomplete="email" required />
+                    <input id="email" v-model="email" type="email" class="justified" autocomplete="email" required />
 
                     <label for="password">Password</label>
-                    <input id="password" v-model="password" type="password" autocomplete="current-password" required />
+                    <input id="password" v-model="password" type="password" class="justified"
+                        autocomplete="current-password" required />
 
                     <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
 
@@ -67,6 +68,11 @@ async function handleSubmit() {
 .login-trigger {
     cursor: pointer;
     font-weight: 500;
+}
+
+.justified {
+    text-align: left;
+    display: block;
 }
 
 .overlay {
