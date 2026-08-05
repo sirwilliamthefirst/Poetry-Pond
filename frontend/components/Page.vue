@@ -168,6 +168,7 @@ function animatePaper() {
 
   <div v-if="open" class="modal-bg" @click.stop="((open = false), (isPickedUp = false), (isRead = true))">
     <div class="poem-fade">
+      <!-- poem is teleported out -->
       <Poem :id="props.id"></Poem>
     </div>
   </div>
@@ -181,18 +182,7 @@ function animatePaper() {
   text-align: center;
 }
 
-.modal-bg {
-  width: 100vw;
-  height: 100vh;
-  z-index: 3;
-  top: 0;
-  left: 0;
-  background-color: rgb(0, 0, 0, 0.5);
-  position: fixed;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-}
+
 
 .page {
   width: 100%;

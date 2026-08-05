@@ -38,7 +38,8 @@ const toggleMenu = () => {
     </g>
   </svg>
 
-  <div v-if="isLoginModalOpen" @click.stop="isLoginModalOpen = false">
+
+  <div v-if="isLoginModalOpen" class="modal-bg" @click.stop="isLoginModalOpen = false">
     <div class="poem-fade">
       <Login></Login>
     </div>
@@ -54,7 +55,7 @@ const toggleMenu = () => {
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 1;
+  z-index: 2;
   /* Below sidenav but above content */
 }
 

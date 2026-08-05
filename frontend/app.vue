@@ -4,8 +4,9 @@ const router = useRouter();
 <template>
   <div>
     <NuxtRouteAnnouncer />
-    <Header></Header>
+
     <div class="pond_container">
+      <Header></Header>
       <NuxtPage />
     </div>
   </div>
@@ -17,6 +18,7 @@ const router = useRouter();
   padding: 0;
   box-sizing: border-box;
 }
+
 .desktop-header {
   position: fixed;
   top: 0;
@@ -28,11 +30,13 @@ const router = useRouter();
   float: right;
   height: min-content;
 }
+
 .pond_container {
   position: fixed;
   width: 100vw;
   height: 100vh;
-  margin: 0 auto; /* centers horizontally */
+  margin: 0 auto;
+  /* centers horizontally */
   overflow: auto;
 }
 
