@@ -10,27 +10,27 @@ const isPoemEditorOpen = ref(false)
 let rippleNextId = 0;
 
 function createRipple(event: MouseEvent) {
-  console.log("create ripple!");
+  //console.log("create ripple!");
   const target = event.currentTarget as HTMLElement;
   const rect = target.getBoundingClientRect();
   const x = event.clientX - rect.left;
   const y = event.clientY - rect.top;
   rippleNextId++;
-  console.log("click pos: " + x + ", " + y);
+  //console.log("click pos: " + x + ", " + y);
   let id = rippleNextId;
   ripples.value.push({ x, y, id });
   lastClick.value = { x, y };
 }
 
 function filterRipple(id: number) {
-  console.log(ripples.value.length, id);
+  //console.log(ripples.value.length, id);
 
   ripples.value = ripples.value.filter((x) => x.id != id);
-  console.log(ripples.value.length);
+  //console.log(ripples.value.length);
 }
 
 const openEditor = () => {
-  console.log('is open?:', isPoemEditorOpen.value)
+  //console.log('is open?:', isPoemEditorOpen.value)
   if (isPoemEditorOpen.value) {
     return
   }
@@ -39,34 +39,34 @@ const openEditor = () => {
 </script>
 
 <template>
-
-  <div class="pond_title">
-    <h1>Poetry Pond</h1>
-  </div>
-  <div @click="createRipple" class="pond">
-    <template v-for="ripple in ripples" :key="ripple.id">
-      <Ripple @deleteRipple="filterRipple" :id="ripple.id" :style="{ left: ripple.x + 'px', top: ripple.y + 'px' }">
-      </Ripple>
-    </template>
-    <template v-for="poem in poemCollection" :key="poem.id">
-      <Page keepalive :lastRipple="lastClick" :id="poem.id"></Page>
-    </template>
-  </div>
-
-  <button class="submit-fab" @click="openEditor">
-    <img src="~/assets/compose.svg" alt="submit poem" class="submit-fab-icon" />
-  </button>
-
-  <div v-if="isPoemEditorOpen" class="modal-bg" @click.stop="isPoemEditorOpen = false">
-    <div class="poem-fade">
-      <PoemSubmit :poem="{ title: '', author: '' }"></PoemSubmit>
+  <div>
+    <div class="pond_title">
+      <h1>Poetry Pond</h1>
     </div>
+    <div @click="createRipple" class="pond">
+      <template v-for="ripple in ripples" :key="ripple.id">
+        <Ripple @deleteRipple="filterRipple" :id="ripple.id" :style="{ left: ripple.x + 'px', top: ripple.y + 'px' }">
+        </Ripple>
+      </template>
+      <template v-for="poem in poemCollection" :key="poem.id">
+        <Page keepalive :lastRipple="lastClick" :id="poem.id"></Page>
+      </template>
+    </div>
+
+    <button class="submit-fab" @click="openEditor">
+      <img src="~/assets/compose.svg" alt="submit poem" class="submit-fab-icon" />
+    </button>
+
+    <div v-if="isPoemEditorOpen" class="modal-bg" @click.stop="isPoemEditorOpen = false">
+      <div class="poem-fade">
+        <PoemSubmit :poem="{ title: '', author: '' }"></PoemSubmit>
+      </div>
+    </div>
+
+    <div class="modals" id="modals"></div>
+
+
   </div>
-
-  <div class="modals" id="modals"></div>
-
-
-
 </template>
 
 <style>
