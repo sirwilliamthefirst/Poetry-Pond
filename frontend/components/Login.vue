@@ -3,18 +3,21 @@ import { ref } from 'vue'
 import { useAuthStore } from '~/stores/auth'
 
 const authStore = useAuthStore()
-
 const email = ref('')
 const password = ref('')
 const errorMessage = ref('')
 const isSubmitting = ref(false)
 
+const emits = defineEmits(['closeModal'])
+
 function closeModal() {
-    isOpen.value = false
     email.value = ''
     password.value = ''
     errorMessage.value = ''
+    emits('closeModal')
 }
+
+
 
 async function handleSubmit() {
     errorMessage.value = ''
@@ -24,6 +27,7 @@ async function handleSubmit() {
         await authStore.login(email.value, password.value)
         closeModal()
     } catch (err) {
+        console.log(err)
         errorMessage.value = 'Invalid email or password.'
     } finally {
         isSubmitting.value = false

@@ -41,7 +41,7 @@ const toggleMenu = () => {
 
   <div v-if="isLoginModalOpen" class="modal-bg" @click.stop="isLoginModalOpen = false">
     <div class="poem-fade">
-      <Login></Login>
+      <Login @closeModal="isLoginModalOpen = false"></Login>
     </div>
   </div>
 

@@ -8,12 +8,15 @@ export const useAuthStore = defineStore('auth', {
   }),
   actions: {
     async login(email, password) {
-      const { data } = await $fetch('/api/user/login', {
+      const { $api } = useNuxtApp() 
+
+      const data  = await $api('/api/user/login', {
         method: 'POST',
         body: { email, password }
       })
       this.accessToken = data.access_token
       this.refreshToken = data.refresh_token
+      return
     }
   }
 })

@@ -3,8 +3,10 @@ import { useAuthStore } from '~/stores/auth'
 export default defineNuxtPlugin(() => {
   const authStore = useAuthStore()
   const retriedRequests = new WeakSet<object>()
+  const config = useRuntimeConfig()
 
   const api = $fetch.create({
+    baseURL: config.public.proxyUrl,
     onRequest({ options }) {
       if (authStore.accessToken) {
         const headers = new Headers(options.headers)
