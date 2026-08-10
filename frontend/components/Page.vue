@@ -12,7 +12,7 @@ import PoemTest from "./PoemTest.vue";
 // Page.vue
 const props = defineProps<{
   lastRipple: { x: number; y: number };
-  poem: { id: number; title: string; date: string; author: string; content: string };
+  poem: { id: string; title: string; date: string; author: string; content: string };
 }>();
 
 const myElement = useTemplateRef("element");
@@ -164,7 +164,7 @@ function animatePaper() {
       </svg>
       <span v-if="!isPickedUp" class="poetrytext">{{
         props.poem.title
-      }}</span>
+        }}</span>
     </div>
   </Transition>
 

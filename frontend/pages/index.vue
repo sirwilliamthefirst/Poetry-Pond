@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ref, provide } from "vue";
 import Modal from "~/components/Modal.vue";
-import { poemCollection } from "../data/poems";
+//import { poemCollection } from "../data/poems";
 import PoemSubmit from "~/components/PoemSubmit.vue";
 import PoemSubmitTest from "~/components/PoemSubmitTest.vue";
 
 const { $api } = useNuxtApp()
-//const { data: poemCollection, error } = await useAsyncData('poems', () => $api('/api/poems'))
-console.log('baseURL:', useRuntimeConfig().public.proxyUrl, useRuntimeConfig().public.proxyUrlSSR)
+const { data: poemCollection, error } = await useAsyncData('poems', () => $api('/api/poems'))
+//console.log('baseURL:', useRuntimeConfig().public.proxyUrl, useRuntimeConfig().public.proxyUrlSSR)
 //console.log("Data", poemCollection.value)
 const ripples = ref<{ x: number; y: number; id: number }[]>([]);
 const lastClick = ref({ x: 0, y: 0 });

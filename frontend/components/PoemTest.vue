@@ -3,7 +3,7 @@ import { poemCollection } from "@/data/poems";
 import { computed, onMounted, ref, onUnmounted } from "vue";
 import TiptapViewer from "./TiptapViewer.vue";
 
-const props = defineProps<{ poem: { id: number; title: string; author: string; content: string } }>();
+const props = defineProps<{ poem: { id: string; title: string; author: string; content: string } }>();
 
 
 const poemPageRef = ref<HTMLElement | null>(null);
