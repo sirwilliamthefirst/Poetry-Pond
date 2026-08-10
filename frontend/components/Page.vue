@@ -96,7 +96,6 @@ watch(
 
 function animatePaper() {
   //Drift
-  console.log("dy:", dy)
   xPos.value += dx;
   yPos.value += dy;
   rotatation.value += dr;
@@ -172,7 +171,7 @@ function animatePaper() {
 
   <div v-if="open">
     <Modal @closeModal="((open = false), (isPickedUp = false), (isRead = true))">
-      <PoemTest :poem="props.poem"></PoemTest>
+      <Poem :poem="props.poem"></Poem>
     </Modal>
   </div>
 </template>

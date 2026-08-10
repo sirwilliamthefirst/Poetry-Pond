@@ -73,17 +73,15 @@ onUnmounted(() => {
 
 
 <template>
-  <Teleport defer to="#modals">
 
-    <form class="poemPage fade-in" @submit.prevent="handleSubmit">
-      <input v-model="form.title" type="text" class="title-input" placeholder="Title" />
-      <input v-model="form.author" type="text" class="author-input" placeholder="Author" />
+  <form class="poemPage " @submit.prevent="handleSubmit">
+    <input v-model="form.title" type="text" class="title-input" placeholder="Title" />
+    <input v-model="form.author" type="text" class="author-input" placeholder="Author" />
 
-      <TiptapEditor ref="editorRef" content="" />
+    <TiptapEditor ref="editorRef" content="" />
 
-      <button type="submit" class="save-btn">Submit</button>
-    </form>
-  </Teleport>
+    <button type="submit" class="save-btn">Submit</button>
+  </form>
 
 </template>
 

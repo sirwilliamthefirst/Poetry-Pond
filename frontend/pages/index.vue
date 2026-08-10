@@ -67,7 +67,7 @@ const openEditor = () => {
 
     <div v-if="isPoemEditorOpen" @click.stop="isPoemEditorOpen = false">
       <Modal @closeModal="isPoemEditorOpen = false">
-        <PoemSubmitTest :poem="{ title: '', author: '' }"></PoemSubmitTest>
+        <PoemSubmit :poem="{ title: '', author: '' }"></PoemSubmit>
       </Modal>
     </div>
     <div class="modals" id="modals"></div>

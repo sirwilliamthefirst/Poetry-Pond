@@ -3,7 +3,7 @@ services:
   frontend:
     environment:
       BACKEND_API_BASE_SSR: ${BACKEND_API_BASE_SSR}
-      BACKEND_API_BASE: ${BACKEND_API_BASE_CLIENT}
+      BACKEND_API_BASE_CLIENT: ${BACKEND_API_BASE_CLIENT}
     build:
       context: frontend/.
       dockerfile: Dockerfile.dev

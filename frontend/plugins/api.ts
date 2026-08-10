@@ -8,6 +8,7 @@ export default defineNuxtPlugin(() => {
   ? config.public.proxyUrl
   : config.public.proxyUrlSSR) as string
   
+  console.log('plugin init, client?', import.meta.client, 'baseURL:', baseURL)
 
   const api = $fetch.create({
     baseURL,
