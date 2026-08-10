@@ -3,7 +3,6 @@ import { ref, provide } from "vue";
 import Modal from "~/components/Modal.vue";
 //import { poemCollection } from "../data/poems";
 import PoemSubmit from "~/components/PoemSubmit.vue";
-import PoemSubmitTest from "~/components/PoemSubmitTest.vue";
 
 const { $api } = useNuxtApp()
 const { data: poemCollection, error } = await useAsyncData('poems', () => $api('/api/poems'))

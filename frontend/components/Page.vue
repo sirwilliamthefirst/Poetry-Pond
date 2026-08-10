@@ -8,7 +8,6 @@ import {
   inject,
 } from "vue";
 import Modal from "./Modal.vue";
-import PoemTest from "./PoemTest.vue";
 // Page.vue
 const props = defineProps<{
   lastRipple: { x: number; y: number };
@@ -163,7 +162,7 @@ function animatePaper() {
       </svg>
       <span v-if="!isPickedUp" class="poetrytext">{{
         props.poem.title
-        }}</span>
+      }}</span>
     </div>
   </Transition>
 
