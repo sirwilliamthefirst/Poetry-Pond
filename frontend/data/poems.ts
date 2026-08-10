@@ -3,9 +3,8 @@ export const poemCollection = [
     id: 0,
     title: 'Immaterial',
     author: 'William Braxton',
-    styles: {},
     date: '2025-09-01T00:00:00',
-    html: `
+    content: `
     <div class="stanza">
       <p>When a platform is acquired—</p>
       <p>to orate and surmise upon—</p>
@@ -53,7 +52,7 @@ export const poemCollection = [
     title: 'Waves',
     author: 'William Braxton',
     date: '2025-09-01T00:00:00',
-    html: ` <div class="stanza">
+    content: ` <div class="stanza">
       <p>Lovers that'll never touch—</p>
       <p>in pursuit of the other</p>
       <p>incessantly, they meet</p>
@@ -70,7 +69,7 @@ export const poemCollection = [
     title: 'My green-eyed one (Peace to Kaufman)',
     author: 'William Braxton',
     date: '2025-09-01T00:00:00',
-    html: ` <div class="stanza">
+    content: ` <div class="stanza">
   <p>My green-eyed one, before this</p>
   <p>Earth stops spinning, think of me.</p>
   <p>Remember, I am here too, my green-</p>
@@ -104,7 +103,7 @@ export const poemCollection = [
     title: 'Gleam',
     author: 'Garret Bischof',
     date: '2025-09-01T00:00:00',
-    html: ` <div style="text-align: left; ">
+    content: ` <div style="text-align: left; ">
   <div class="stanza">
   <p>The girl was in the room. Like other times the girl was in the room she</p>
   <p>scarcely noticed it. She saw a metallic box. It was the oven. She heard some</p>
@@ -127,7 +126,7 @@ export const poemCollection = [
     title: 'My Tragedy',
     author: 's. f.',
     date: '2025-12-13T00:00:00',
-    html: ` 
+    content: ` 
   <div class="stanza">
   <p>The sun cycles to visit once a day</p>
   <p>As I sit there pondering about my next lay</p>

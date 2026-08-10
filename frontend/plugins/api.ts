@@ -4,10 +4,15 @@ export default defineNuxtPlugin(() => {
   const authStore = useAuthStore()
   const retriedRequests = new WeakSet<object>()
   const config = useRuntimeConfig()
+  const baseURL = (import.meta.client
+  ? config.public.proxyUrl
+  : config.public.proxyUrlSSR) as string
+  
 
   const api = $fetch.create({
-    baseURL: config.public.proxyUrl,
+    baseURL,
     onRequest({ options }) {
+      console.log('Resolved baseURL:', baseURL, 'client?', import.meta.client)
       if (authStore.accessToken) {
         const headers = new Headers(options.headers)
         headers.set('Authorization', `Bearer ${authStore.accessToken}`)

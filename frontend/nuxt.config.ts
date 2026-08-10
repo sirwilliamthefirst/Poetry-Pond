@@ -17,7 +17,8 @@ debug: true,
  runtimeConfig: {
                     // Keys within public are also exposed client-side
                     public: {
-                                    proxyUrl: process.env.BACKEND_API_BASE,
+                                    proxyUrl: process.env.BACKEND_API_BASE_CLIENT as string,
+                                    proxyUrlSSR: process.env.BACKEND_API_BASE_SSR as string,
                     }
     },
 

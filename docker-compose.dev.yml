@@ -1,6 +1,9 @@
 services:
 
   frontend:
+    environment:
+      BACKEND_API_BASE_SSR: ${BACKEND_API_BASE_SSR}
+      BACKEND_API_BASE: ${BACKEND_API_BASE_CLIENT}
     build:
       context: frontend/.
       dockerfile: Dockerfile.dev
@@ -11,6 +14,7 @@ services:
       - ./frontend/:/frontend:delegated # improve speed for hot reloading
       - /frontend/node_modules
     command: ["npm", "run", "dev"]
+
     depends_on:
       - backend
     restart: always

@@ -7,11 +7,12 @@ import {
   watch,
   inject,
 } from "vue";
-import { poemCollection } from "@/data/poems";
-
+import Modal from "./Modal.vue";
+import PoemTest from "./PoemTest.vue";
+// Page.vue
 const props = defineProps<{
   lastRipple: { x: number; y: number };
-  id: number;
+  poem: { id: number; title: string; date: string; author: string; content: string };
 }>();
 
 const myElement = useTemplateRef("element");
@@ -36,7 +37,7 @@ onMounted(() => {
   dy = 1 * (Math.random() - 0.5);
   dx = 1 * (Math.random() - 0.5);
   parent = myElement.value?.parentElement;
-  poemDate = poemCollection[props.id]?.date;
+  poemDate = props.poem.date;
   if (parent) {
     const rect = myElement.value!.getBoundingClientRect();
     xPos.value = Math.random() * (parent.clientWidth - rect.width);
@@ -95,6 +96,7 @@ watch(
 
 function animatePaper() {
   //Drift
+  console.log("dy:", dy)
   xPos.value += dx;
   yPos.value += dy;
   rotatation.value += dr;
@@ -131,48 +133,47 @@ function animatePaper() {
 </script>
 
 <template>
-  <div>
-    <Transition name="pickup" @after-leave="open = true">
-      <div v-show="!isPickedUp" ref="element" class="page-container" :style="{
-        position: 'absolute',
-        top: `${yPos}px`,
-        left: `${xPos}px`,
-        opacity: isRead ? '40%' : '100%',
-      }">
-        <svg ref="svgElement" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--noto page"
-          :style="{
-            transform: `rotate(${rotatation}deg)`,
-          }" @click.stop="isPickedUp = true" preserveAspectRatio="xMidYMid meet">
-          <!-- SVG content stays the same -->
-          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-          <g id="SVGRepo_iconCarrier">
-            <path :fill="pageColor" d="M87.85 6.19H16.8v115.45h94.62V28.8z"></path>
-            <g fill="none" stroke="#b0bec5" stroke-width="3.865" stroke-linecap="round" stroke-miterlimit="10">
-              <path d="M33.34 41.05H94.5"></path>
-              <path d="M33.34 55.68H94.5"></path>
-              <path d="M33.34 70.3H94.5"></path>
-              <path d="M33.34 84.93H94.5"></path>
-              <path d="M33.34 99.56h26.15"></path>
-            </g>
-            <path
-              d="M109.45 23.59L92.79 6.88A10.555 10.555 0 0 0 85.54 4h-68.5c-1.55 0-2.81 1.26-2.81 2.81v114.38c0 1.55 1.26 2.81 2.81 2.81h93.93c1.55 0 2.81-1.26 2.81-2.81V31.28c-.01-2.91-2.21-5.69-4.33-7.69zm.32 96.41H18.23V8h64.66c2.12 0 3.85 1.72 3.85 3.85v17.88h17.34c3.14 0 5.69 1.73 5.69 5.69V120z"
-              fill="#6fbff0"></path>
+  <Transition name="pickup" @after-leave="open = true">
+    <div v-show="!isPickedUp" ref="element" class="page-container" :style="{
+      position: 'absolute',
+      top: `${yPos}px`,
+      left: `${xPos}px`,
+      opacity: isRead ? '40%' : '100%',
+    }">
+      <svg ref="svgElement" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--noto page"
+        :style="{
+          transform: `rotate(${rotatation}deg)`,
+        }" @click.stop="isPickedUp = true" preserveAspectRatio="xMidYMid meet">
+        <!-- SVG content stays the same -->
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+        <g id="SVGRepo_iconCarrier">
+          <path :fill="pageColor" d="M87.85 6.19H16.8v115.45h94.62V28.8z"></path>
+          <g fill="none" stroke="#b0bec5" stroke-width="3.865" stroke-linecap="round" stroke-miterlimit="10">
+            <path d="M33.34 41.05H94.5"></path>
+            <path d="M33.34 55.68H94.5"></path>
+            <path d="M33.34 70.3H94.5"></path>
+            <path d="M33.34 84.93H94.5"></path>
+            <path d="M33.34 99.56h26.15"></path>
           </g>
-        </svg>
-        <span v-if="!isPickedUp" class="poetrytext">{{
-          poemCollection[props.id]?.title
-          }}</span>
-      </div>
-    </Transition>
-
-    <div v-if="open" class="modal-bg" @click.stop="((open = false), (isPickedUp = false), (isRead = true))">
-      <div class="poem-fade">
-        <!-- poem is teleported out -->
-        <Poem :id="props.id"></Poem>
-      </div>
+          <path
+            d="M109.45 23.59L92.79 6.88A10.555 10.555 0 0 0 85.54 4h-68.5c-1.55 0-2.81 1.26-2.81 2.81v114.38c0 1.55 1.26 2.81 2.81 2.81h93.93c1.55 0 2.81-1.26 2.81-2.81V31.28c-.01-2.91-2.21-5.69-4.33-7.69zm.32 96.41H18.23V8h64.66c2.12 0 3.85 1.72 3.85 3.85v17.88h17.34c3.14 0 5.69 1.73 5.69 5.69V120z"
+            fill="#6fbff0"></path>
+        </g>
+      </svg>
+      <span v-if="!isPickedUp" class="poetrytext">{{
+        props.poem.title
+      }}</span>
     </div>
+  </Transition>
+
+
+
+  <div v-if="open">
+    <Modal @closeModal="((open = false), (isPickedUp = false), (isRead = true))">
+      <PoemTest :poem="props.poem"></PoemTest>
+    </Modal>
   </div>
 </template>
 
@@ -183,8 +184,6 @@ function animatePaper() {
   position: absolute;
   text-align: center;
 }
-
-
 
 .page {
   width: 100%;

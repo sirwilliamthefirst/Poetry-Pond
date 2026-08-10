@@ -3,7 +3,7 @@ import { poemCollection } from "@/data/poems";
 import { computed, onMounted, ref, onUnmounted } from "vue";
 import TiptapViewer from "./TiptapViewer.vue";
 
-const props = defineProps<{ poem: { id: string; title: string; author: string; html: string } }>();
+const props = defineProps<{ poem: { id: number; title: string; author: string; content: string } }>();
 
 
 const poemPageRef = ref<HTMLElement | null>(null);
@@ -44,15 +44,13 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <Teleport defer to="#modals">
-    <div ref="poemPageRef" class="poemPage fade-in">
-      <h1>{{ poem.title }}</h1>
-      <NuxtLink to="/profile">
-        <h2>{{ poem.author }}</h2>
-      </NuxtLink>
-      <TiptapViewer :content="poem.html" @ready="adjustFontSize"></TiptapViewer>
-    </div>
-  </Teleport>
+  <div ref="poemPageRef" class="poemPage fade-in">
+    <h1>{{ poem.title }}</h1>
+    <NuxtLink to="/profile">
+      <h2>{{ poem.author }}</h2>
+    </NuxtLink>
+    <TiptapViewer :content="poem.content" @ready="adjustFontSize"></TiptapViewer>
+  </div>
 </template>
 
 <style>

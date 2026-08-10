@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import { ref, provide } from "vue";
+import Modal from "~/components/Modal.vue";
 import { poemCollection } from "../data/poems";
 import PoemSubmit from "~/components/PoemSubmit.vue";
+import PoemSubmitTest from "~/components/PoemSubmitTest.vue";
 
-provide("poemCollection", poemCollection);
+const { $api } = useNuxtApp()
+//const { data: poemCollection, error } = await useAsyncData('poems', () => $api('/api/poems'))
+console.log('baseURL:', useRuntimeConfig().public.proxyUrl, useRuntimeConfig().public.proxyUrlSSR)
+//console.log("Data", poemCollection.value)
 const ripples = ref<{ x: number; y: number; id: number }[]>([]);
 const lastClick = ref({ x: 0, y: 0 });
 const isPoemEditorOpen = ref(false)
@@ -36,6 +41,8 @@ const openEditor = () => {
   }
   isPoemEditorOpen.value = true
 }
+
+
 </script>
 
 <template>
@@ -48,8 +55,8 @@ const openEditor = () => {
         <Ripple @deleteRipple="filterRipple" :id="ripple.id" :style="{ left: ripple.x + 'px', top: ripple.y + 'px' }">
         </Ripple>
       </template>
-      <template v-for="poem in poemCollection" :key="poem.id">
-        <Page keepalive :lastRipple="lastClick" :id="poem.id"></Page>
+      <template v-for="poem in poemCollection ?? []" :key="poem.id">
+        <Page keepalive :lastRipple="lastClick" :poem="poem" />
       </template>
     </div>
 
@@ -57,12 +64,12 @@ const openEditor = () => {
       <img src="~/assets/compose.svg" alt="submit poem" class="submit-fab-icon" />
     </button>
 
-    <div v-if="isPoemEditorOpen" class="modal-bg" @click.stop="isPoemEditorOpen = false">
-      <div class="poem-fade">
-        <PoemSubmit :poem="{ title: '', author: '' }"></PoemSubmit>
-      </div>
-    </div>
 
+    <div v-if="isPoemEditorOpen" @click.stop="isPoemEditorOpen = false">
+      <Modal @closeModal="isPoemEditorOpen = false">
+        <PoemSubmitTest :poem="{ title: '', author: '' }"></PoemSubmitTest>
+      </Modal>
+    </div>
     <div class="modals" id="modals"></div>
 
 
@@ -102,6 +109,7 @@ const openEditor = () => {
   filter: brightness(0) invert(1);
 }
 
+
 .modals {
   position: absolute;
   background-attachment: fixed;
@@ -114,9 +122,9 @@ const openEditor = () => {
   max-height: 90vh;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  transform: translate(-50%, 0%);
   display: flex;
   justify-content: center;
+
 }
 
 @media (min-width: 769px) {
