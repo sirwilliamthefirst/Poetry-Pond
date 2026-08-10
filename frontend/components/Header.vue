@@ -39,10 +39,10 @@ const toggleMenu = () => {
   </svg>
 
 
-  <div v-if="isLoginModalOpen" class="modal-bg" @click.stop="isLoginModalOpen = false">
-    <div class="poem-fade">
-      <Login @closeModal="isLoginModalOpen = false"></Login>
-    </div>
+  <div v-if="isLoginModalOpen" @click.stop="isLoginModalOpen = false">
+    <Modal @closeModal="isLoginModalOpen = false">
+      <Login></Login>
+    </Modal>
   </div>
 
 </template>

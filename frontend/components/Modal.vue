@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { provide } from 'vue'
 
 const emits = defineEmits(['closeModal'])
 function closeModal() {
     emits('closeModal')
 }
+
+provide('closeModal', closeModal)
+
 </script>
 
 <template>

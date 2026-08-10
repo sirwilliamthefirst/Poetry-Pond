@@ -1,21 +1,16 @@
 <script setup>
 import { ref } from 'vue'
 import { useAuthStore } from '~/stores/auth'
+import { inject } from 'vue'
 
+const closeModal = inject('closeModal')
 const authStore = useAuthStore()
 const email = ref('')
 const password = ref('')
 const errorMessage = ref('')
 const isSubmitting = ref(false)
 
-const emits = defineEmits(['closeModal'])
 
-function closeModal() {
-    email.value = ''
-    password.value = ''
-    errorMessage.value = ''
-    emits('closeModal')
-}
 
 
 
@@ -37,33 +32,27 @@ async function handleSubmit() {
 
 
 <template>
-    <Teleport defer to="#modals">
+    <div>
+        <form class="poemPage fade-in" @submit.prevent="handleSubmit">
+            <h2>Log In</h2>
 
-        <div>
-            <div class="overlay">
-                <form class="poemPage fade-in" @submit.prevent="handleSubmit">
-                    <h2>Log In</h2>
+            <label for="email">Email</label>
+            <input id="email" v-model="email" type="email" class="justified" autocomplete="email" required />
 
-                    <label for="email">Email</label>
-                    <input id="email" v-model="email" type="email" class="justified" autocomplete="email" required />
+            <label for="password">Password</label>
+            <input id="password" v-model="password" type="password" class="justified" autocomplete="current-password"
+                required />
 
-                    <label for="password">Password</label>
-                    <input id="password" v-model="password" type="password" class="justified"
-                        autocomplete="current-password" required />
+            <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
 
-                    <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
-
-                    <div class="actions">
-                        <button type="button" @click="closeModal">Cancel</button>
-                        <button type="submit" :disabled="isSubmitting">
-                            {{ isSubmitting ? 'Logging in...' : 'Log In' }}
-                        </button>
-                    </div>
-                </form>
+            <div class="actions">
+                <button type="button" @click="closeModal">Cancel</button>
+                <button type="submit" :disabled="isSubmitting">
+                    {{ isSubmitting ? 'Logging in...' : 'Log In' }}
+                </button>
             </div>
-        </div>
-    </Teleport>
-
+        </form>
+    </div>
 </template>
 
 
